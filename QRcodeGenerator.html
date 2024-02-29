@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and QR Code Display</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        .left-side, .right-side {
+            flex: 1; /* Each side takes up half the width of the container */
+            margin: 10px;
+        }
+        .left-side {
+            text-align: left;
+        }
+        .right-side {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #48bbdb;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #90e0ef;
+        }
+        #qrcode img {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <img id="uploadedImage" src="path-to-uploaded-image.jpg" alt="Uploaded Image" />
+            <p id="imageDescription">Description of the image.</p>
+        </div>
+        <div class="right-side">
+            <div id="qrcode"></div>
+            <button id="saveBtn">Save QR Code</button>
+            <button id="printBtn">Print QR Code</button>
+        </div>
+    </div>
+
+    <script>
+        // Generate QR code for the uploaded image URL
+        var imageURL = 'https://example.com/path-to-your-uploaded-image.jpg'; // Replace with actual image URL after upload
+        QRCode.toDataURL(imageURL, function (err, url) {
+            if (err) console.error(err);
+            var img = document.createElement('img');
+            img.src = url;
+            document.getElementById('qrcode').appendChild(img);
+        });
+
+        // Event listener for saving the QR Code
+        document.getElementById('saveBtn').addEventListener('click', function () {
+            var qrImg = document.querySelector('#qrcode img');
+            var dataUrl = qrImg.src;
+            var link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'qr-code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Event listener for printing the QR Code
+        document.getElementById('printBtn').addEventListener('click', function () {
+            window.print();
+        });
+
+        // You should populate these fields with the actual image source and description
+        // after the form submission and image upload is complete
+        document.getElementById('uploadedImage').src = 'path-to-uploaded-image.jpg'; // Set the source to the uploaded image
+        document.getElementById('imageDescription').textContent = 'Object description'; // Set the text content to the image description
+    </script>
+</body>
+</html>

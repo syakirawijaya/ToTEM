@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+h2 {
+    text-align: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input[type="text"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+input[type="submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #48bbdb;
+    color: white;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background: #90e0ef;
+}
+
+/*  Style uploadForm */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 300px; /* Set a fixed width for the container */
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input[type="file"],
+textarea,
+input[type="submit"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+input[type="submit"] {
+    background: #48bbdb;
+    color: white;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background: #90e0ef;
+}
+textarea {
+    resize: vertical;
+}

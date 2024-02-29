@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload and Description with QR Code</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Story</h2>
+        <form action="your-server-side-script.php" method="post" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Object Title" required>
+            <input type="file" id="imageInput" name="image" accept="image/*" required>
+            <img id="imagePreview" src="#" alt="Image Preview" style="display:none;" /> <!-- Image preview element -->
+            <textarea name="description" placeholder="Describe the image" rows="4" required></textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
