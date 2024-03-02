@@ -4,7 +4,7 @@ document.getElementById('nameForm').addEventListener('submit', function(event) {
     sessionStorage.setItem('firstName', document.getElementById('firstName').value);
     sessionStorage.setItem('lastName', document.getElementById('lastName').value);
     // Redirect to the upload form
-    window.location.href = 'upload_form.html';
+    // window.location.href = 'uploadForm.html';
 });
 
 document.getElementById('imageInput').addEventListener('change', function(event) {
