@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_data.title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ user_data.title }}</h1>
+        <p><strong>Description:</strong> {{ user_data.description }}</p>
+        <img src="{{ url_for('uploaded_file', filename=user_data.filename) }}" alt="User Image" style="max-width: 100%;">
+        <div>
+            <img src="{{ qrcode(request.url, mode='raw') }}" alt="QR Code for this page">
+        </div>
+    </div>
+</body>
+</html>
