@@ -1,14 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_qrcode import QRcode
+from werkzeug.utils import secure_filename
+import os
 
 app = Flask(__name__)
+qrcode = QRcode(app)
+
+# Configurations
+app.secret_key = 'testTOTEM2024'
+app.config['UPLOAD_FOLDER'] = 'uploads'
+
+# Ensure the upload folder exists
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        firstName = request.form.get('firstname')  # corrected from 'name' to 'firstname'
-        lastName = request.form.get('lastname')
+        session['firstname'] = request.form['firstname']
+        session['lastname'] = request.form['lastname']
 
-        print(firstName, lastName)
+        print(session['firstname'], session['lastname'])
 
         return redirect(url_for('upload'))
     return render_template('index.html')
@@ -17,7 +28,17 @@ def home():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    return render_template('uploadForm.html')
+    if request.method == 'POST':
+        firstname = session.get('firstname')
+        lastname = session.get('lastname')
+
+        return redirect(url_for('qrcode'))
+        
+    return render_template('uploadForm.html', firstname=session.get('firstname'), lastname=session.get('lastname'))
+
+@app.route('/QR_code', methods=['GET', 'POST'])
+def qrcode():
+    return render_template('QRcodeGenerator.html')
 
 if __name__ == '__main__':
     app.run()
