@@ -7,11 +7,14 @@ document.getElementById('nameForm').addEventListener('submit', function(event) {
     // window.location.href = 'uploadForm.html';
 });
 
+console.log('Script loaded.');
 document.getElementById('imageInput').addEventListener('change', function(event) {
+    console.log('File selected:', event.target.files[0]);
     var output = document.getElementById('imagePreview');
-    output.style.display = 'block'; // Show the image container
+    output.style.display = 'block';
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
-        URL.revokeObjectURL(output.src) // Free memory when the image is loaded
-    }
+        console.log('Image loaded.');
+        URL.revokeObjectURL(output.src);
+    };
 });

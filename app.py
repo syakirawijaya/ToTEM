@@ -13,6 +13,8 @@ def home():
         return redirect(url_for('upload'))
     return render_template('index.html')
 
+
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     return render_template('uploadForm.html')

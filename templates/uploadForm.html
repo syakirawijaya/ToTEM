@@ -9,7 +9,7 @@
 <body>
     <div class="container"> <!-- Container for the content, styled with CSS -->
         <h2>Add Story</h2> <!-- Section heading -->
-        <form action="your-server-side-script.php" method="post" enctype="multipart/form-data"> <!-- Form element to submit data to the server -->
+        <form action="QR_code" method="post" enctype="multipart/form-data"> <!-- Form element to submit data to the server -->
             <input type="text" name="title" placeholder="Object Title" required> <!-- Input field for text input -->
             <input type="file" id="imageInput" name="image" accept="image/*" required> <!-- Input field for file upload, accepts only images -->
             <img id="imagePreview" src="#" alt="Image Preview" style="display:none;" /> <!-- Placeholder for image preview, initially hidden -->
@@ -17,7 +17,6 @@
             <input type="submit" value="Submit"> <!-- Submit button for the form -->
         </form>
     </div>
-
     <script src="/static/script.js"></script> <!-- Links an external JavaScript file -->
 </body>
 </html>
