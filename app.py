@@ -61,8 +61,38 @@ def user_page(user_route):
     user_data = db.search(User.route == user_route)
     if user_data:
         user_data = user_data[0]
+
+        print(f"Generated URL for QR code: {request.url}")
+
         return render_template('user_page.html', user_data=user_data)
     return 'User not found', 404
+
+#TEST
+@app.route('/test_qr')
+def test_qr():
+    # This route is just for testing QR code generation
+    test_url = 'https://blog.teclado.com/file-uploads-with-flask/'
+    qr_img_src = qrcode(test_url, mode='raw')
+    return f'<img src="{qr_img_src}" alt="QR Code">'
+
+#TEST2
+@app.route('/test_qr_image')
+def test_qr_image():
+    # Generate a QR code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=10,
+        border=4
+    )
+    qr.add_data("https://blog.teclado.com/file-uploads-with-flask/")
+    qr.make(fit=True)
+    img = qr.make_image(fill='black', back_color='white')
+    img_byte_arr = BytesIO()
+    img.save(img_byte_arr, format='PNG')
+    img_byte_arr.seek(0)
+    
+    return send_file(img_byte_arr, mimetype='image/png')
 
 if __name__ == '__main__':
     app.run(debug=True)
