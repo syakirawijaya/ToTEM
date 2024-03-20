@@ -85,3 +85,52 @@ input[type="submit"]:hover {
 textarea {
     resize: vertical;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#qrCode {
+    margin-bottom: 20px; /* Add margin between QR code and buttons */
+}
+.qr-container {
+    margin-bottom: 20px;
+}
+
+#qrCodeImg {
+    max-width: 200px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background: #48bbdb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #90e0ef;
+}

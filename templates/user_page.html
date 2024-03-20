@@ -5,13 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ user_data.title }}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .button-container {
+            display: flex;
+        }
+
+        .button-container button {
+            margin-right: 10px;
+        }
+
+        #qrCodeImg {
+            margin-top: 10px; /* Adjust the top margin as needed */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>{{ user_data.title }}</h1>
-        <p><strong>Description:</strong> {{ user_data.description }}</p>
         <img src="{{ url_for('uploaded_file', filename=user_data.filename) }}" alt="User Image" style="max-width: 100%;">
-        <img src="{{ qr_image_url }}" alt="QR Code" style="max-width: 100%;">
+        <p><strong>Description:</strong> {{ user_data.description }}</p>
+        <button onclick="toggleQR()">Show QR Code</button>
+        <div id="qrContainer" style="display: none;">
+            <img id="qrCodeImg" src="{{ qr_image_url }}" alt="QR Code" style="max-width: 50%; height: auto;">
+            <div class="button-container">
+                <button onclick="saveQR()">Save QR Code</button>
+                <button onclick="printQR()">Print QR Code</button>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function toggleQR() {
+            var qrContainer = document.getElementById('qrContainer');
+            qrContainer.style.display = qrContainer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function saveQR() {
+            var qrImg = document.getElementById('qrCodeImg');
+            var canvas = document.createElement('canvas');
+            canvas.width = qrImg.naturalWidth;
+            canvas.height = qrImg.naturalHeight;
+            var context = canvas.getContext('2d');
+            context.drawImage(qrImg, 0, 0);
+            var link = document.createElement('a');
+            link.download = 'QRCode.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function printQR() {
+            var qrImg = document.getElementById('qrCodeImg');
+            var printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Print QR Code</title></head><body><img src="' + qrImg.src + '" style="max-width: 100%;"></body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+    </script>
 </body>
 </html>
