@@ -11,9 +11,7 @@
         <h1>{{ user_data.title }}</h1>
         <p><strong>Description:</strong> {{ user_data.description }}</p>
         <img src="{{ url_for('uploaded_file', filename=user_data.filename) }}" alt="User Image" style="max-width: 100%;">
-        <div>
-            <img src="{{ qrcode(request.url, mode='raw') }}" alt="QR Code for this page">
-        </div>
+        <img src="{{ qr_image_url }}" alt="QR Code" style="max-width: 100%;">
     </div>
 </body>
 </html>
