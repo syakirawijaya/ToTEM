@@ -60,7 +60,7 @@ def user_page(user_route):
     if user_data:
         user_data = user_data[0]
         
-        # Generate URL for QR code
+        # Generate URL for QR code using IP address
         qr_url = 'http://10.16.13.226:5000/user/' + user_route
         
         print(f"Generated URL for QR code: {qr_url}")
