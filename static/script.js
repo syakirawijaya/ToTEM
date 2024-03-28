@@ -2,12 +2,12 @@
 
 var loadFile = function(event) {
     var output = document.getElementById('imagePreview');
-    output.style.display = 'block'; // Show the image container
+    output.style.display = 'block'; 
     if (output.src) {
-        URL.revokeObjectURL(output.src); // Revoke the previous object URL
+        URL.revokeObjectURL(output.src);
     }
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
-        URL.revokeObjectURL(output.src); // Free memory when the image is loaded
+        URL.revokeObjectURL(output.src); 
     };
 };
