@@ -9,12 +9,15 @@
 <body>
     <div class="container">
         <h2>Add Story</h2>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="text" name="title" placeholder="Object Title" required>
-            <input type="file" id="imageInput" name="image" accept="image/*" required onchange="loadFile(event)">
-            <img id="imagePreview" src="#" alt="Image Preview" style="display:none;" />
-            <textarea name="description" placeholder="Describe the image" rows="4" required></textarea>
-            <input type="submit" value="Submit">
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <input type="text" id="title" name="title" placeholder="Title" required>
+            <textarea id="description" name="description" placeholder="Description" required></textarea>
+            <input type="radio" id="mode_public" name="mode" value="public" checked>
+            <label for="mode_public">Public</label>
+            <input type="radio" id="mode_private" name="mode" value="private">
+            <label for="mode_private">Private</label>
+            <input type="submit" value="Upload">
         </form>
     </div>
     <script>

@@ -32,7 +32,21 @@
                 <button onclick="printQR()">Print QR Code</button>
             </div>
         </div>
-    </div>    
+        {% if user_data.mode == 'public' %}
+        <h2>Add Your Comment</h2>
+        <form action="{{ url_for('user_page', user_route=user_data.route) }}" method="post">
+            <textarea name="comment" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in user_data.get('comments', []) %}
+            <li>{{ comment }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
 
     <script>
         function toggleQR() {
